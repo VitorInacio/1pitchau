@@ -1,0 +1,31 @@
+{
+  "categorias": [
+    {
+      "id": 1,
+      "categoria": "Pendrive"
+    },
+    {
+      "id": 2,
+      "categoria": "Mouse"
+    }
+  ],
+
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Pendrive Samsung",
+      "preco": "80,00",
+      "promo": "10,99",
+      "imagem": "https://m.media-amazon.com/images/I/81JJHlQjIiL.jpg"
+    },
+    {
+      "id": 2,
+      "nome": "Notebook Samsung",
+      "preco": "2000,00",
+      "promo": "1499,90",
+      "imagem": "https://m.media-amazon.com/images/I/51beP6Q0C4L._AC_UF894,1000_QL80_.jpg"
+    }
+  ]
+
+
+}
