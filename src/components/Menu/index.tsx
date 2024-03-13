@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { FaShoppingCart } from 'react-icons/fa'
 import { LeftContainer, NavbarContainer, NavbarExtendedContainer, NavbarInnerContainer, NavbarLink, NavbarLinkContainer, NavbarLinkExtended, OpenLinksButton, RightContainer } from "./styles";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 interface IDataMenu {
   id: number;
@@ -17,22 +17,13 @@ export const Menu = () => {
 
     axios.get('http://localhost:3000/categorias')
       .then((res) => {
-        console.log(res.data)
+        setDataMenu(res.data)
       })
-      .catch((err: any) => {
+      .catch((err: AxiosError) => {
         console.log(err)
       })
 
-    setDataMenu([
-      {
-        id: 1,
-        categoria: 'Eletronicos'
-      },
-      {
-        id: 2,
-        categoria: 'Moveis'
-      }
-    ])
+
   }, [])
 
   return (

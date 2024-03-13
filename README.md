@@ -31,4 +31,5 @@ export default {
 
 ### Ajuda
 
-- npx json-server db.json -> Para iniciar o JsonServer
+- npm run start -> Para iniciar o projeto
+- npx json-server servidor/db.json -> Para iniciar o JsonServer

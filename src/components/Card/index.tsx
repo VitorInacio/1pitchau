@@ -1,8 +1,7 @@
-import axios, { AxiosError } from "axios"
-import { useEffect, useState } from "react"
+
 import { Button, CardBody, TextButton, TextPromo, Title, TitlePreco } from "./styles";
 
-interface IDataCard {
+interface IProps {
   "id": number;
   "nome": string;
   "preco": string;
@@ -10,40 +9,18 @@ interface IDataCard {
   "imagem": string;
 }
 
-export const Card = () => {
-
-  const [dataCard, setDataCard] = useState<Array<IDataCard>>([])
-
-  useEffect(() => {
-
-    axios.get('http://localhost:3000/produtos')
-      .then((res) => {
-        setDataCard(res.data)
-      })
-      .catch((err: AxiosError) => {
-        console.log(err)
-      })
-
-
-  }, [])
+export const Card = (props: IProps) => {
 
   return (
-    <>
-      {
-        dataCard.map((card) => {
-          return(
-            <CardBody key={card.id}>
-              <img src={card.imagem} alt="" />
-              <Title>{card.nome}</Title>
-              <TitlePreco>{card.preco}</TitlePreco>
-              <TextPromo>{card.promo}</TextPromo>
-              <Button>
-                <TextButton>Detalhes</TextButton>
-              </Button>
-            </CardBody>
-          )
-        })
-      }
-    </>
+    <CardBody>
+      <img src={props.imagem} />
+      <Title>{props.nome}</Title>
+      <TitlePreco>{props.preco}</TitlePreco>
+      <TextPromo>{props.promo}</TextPromo>
+      <Button>
+        <TextButton>Detalhes</TextButton>
+      </Button>
+    </CardBody>
+
   )
 }
