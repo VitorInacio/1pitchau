@@ -4,13 +4,14 @@ import { Menu } from "../../components/Menu"
 import axios, { AxiosError } from "axios";
 
 interface IDataProduto {
-  "id": number;
-  "nome": string;
-  "preco": string;
-  "promo": string;
-  "imagemg": string;
-  "imagemp": string;
-  "id_categoria": number;
+  "id": number,
+  "nome": string,
+  "valor": string,
+  "promo": string,
+  "id_categoria": number,
+  "promoNumber": string,
+  "imagemg": string,
+  "imagemp": string
 
 }
 
@@ -46,7 +47,7 @@ export const Home = () => {
               key={produto.id}
               id={produto.id}
               nome={produto.nome}
-              preco={produto.preco}
+              preco={produto.valor}
               promo={produto.promo}
               imagem={"https://raw.githubusercontent.com/profchines/imagens1Pitchau/main/Imagens1Pitchau/" + produto.imagemp}
             />
