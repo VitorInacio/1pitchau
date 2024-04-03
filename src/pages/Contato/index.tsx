@@ -1,3 +1,4 @@
+import { Menu } from "../../components/Menu"
 import { FormContainer } from "./styles"
 
 
@@ -5,6 +6,7 @@ export const Contato = () => {
 
   return (
     <>
+      <Menu />
       <FormContainer>
         <h1>Contato</h1>
         <p>Site feito em aula</p>

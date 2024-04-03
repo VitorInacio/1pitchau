@@ -54,6 +54,8 @@ export const Menu = () => {
                   )
                 })
               }
+              <NavbarLink to={'/contato'}>Contato</NavbarLink>
+
 
             </NavbarLinkContainer>
           </LeftContainer>
