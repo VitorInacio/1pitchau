@@ -33,7 +33,7 @@ export const Input = styled.input`
     color: #ccc;
   }
 `
-export const Button = styled.div`
+export const Button = styled.button`
   border: 0;
   padding: 15px;
   border-radius: 8px;

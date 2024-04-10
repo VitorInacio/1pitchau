@@ -2,11 +2,39 @@ import { useNavigate } from "react-router-dom"
 import { Menu } from "../../components/Menu"
 import { Table, THtr, THTh, TBTr, Td, TextButton, Button } from "./styles"
 import { FaTrash } from "react-icons/fa";
+import { useCallback, useEffect, useState } from "react";
+import { ICarrinho } from "../../@types/interfaces";
+import { formataValorBR } from "../../services/format";
 
 export const Carrinho = () => {
 
   const navigate = useNavigate();
+  const [dataCarrinho, setDataCarrinho] = useState<Array<ICarrinho>>([]);
+  const [valorTotal, setValorTotal] = useState<number>(0)
 
+  const atualizaValorTotal = useCallback((carrinho: Array<ICarrinho>) => {
+    let total = 0
+    carrinho.forEach((produto) => {
+      total = produto.total + total
+    })
+
+    setValorTotal(total)
+  }, [])
+
+  useEffect(() => {
+    let lsCarrinho = localStorage.getItem('@1pitchau:carrinho')
+    let carrinho: Array<ICarrinho> = []
+
+    if (typeof lsCarrinho === 'string') {
+      carrinho = JSON.parse(lsCarrinho)
+    }
+
+    if (carrinho.length > 0) {
+      setDataCarrinho(carrinho)
+      atualizaValorTotal(carrinho)
+    }
+
+  }, [])
   return (
     <>
       <Menu/>
@@ -17,33 +45,40 @@ export const Carrinho = () => {
           <thead>
             <THtr>
               <THTh style={{minWidth: 300, }} >Nome do produto</THTh>
-              <THTh>Quantidade</THTh>
+              <THTh>Qnt.</THTh>
               <THTh>Vlr. Unit</THTh>
               <THTh>Vlr. Total</THTh>
               <THTh>Ações</THTh>
             </THtr>
           </thead>
           <tbody>
-            <TBTr>
-              <Td width={300}>Fritadeira</Td>
-              <Td>1</Td>
-              <Td>1050,50</Td>
-              <Td>1050,50</Td>
-              <Td>
-                <Button type="button">
-                  <TextButton>
-                    <FaTrash />
-                  </TextButton>
-                </Button>
-              </Td>
-            </TBTr>
+            {
+              dataCarrinho.map((produto) => {
+                return(
+                  <TBTr key={produto.id}>
+                    <Td width={300}>{produto.nome}</Td>
+                    <Td>{produto.quantidade}</Td>
+                    <Td>{formataValorBR(Number(produto.promo))}</Td>
+                    <Td>{formataValorBR(produto.total)}</Td>
+                    <Td>
+                      <Button type="button">
+                        <TextButton>
+                          <FaTrash />
+                        </TextButton>
+                      </Button>
+                    </Td>
+                  </TBTr>
+                )
+              })
+            }
+
           </tbody>
           <tfoot>
             <TBTr>
               <Td width={300}>Valor Total:</Td>
               <Td></Td>
               <Td></Td>
-              <Td>1.000,50</Td>
+              <Td>{formataValorBR(valorTotal)}</Td>
               <Td></Td>
             </TBTr>
           </tfoot>
