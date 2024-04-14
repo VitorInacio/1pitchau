@@ -1,41 +1,65 @@
+/* eslint-disable prefer-const */
+import { Link, useParams } from "react-router-dom"
 import { Menu } from "../../components/Menu"
-import { FormContainer } from "./styles"
+import { Col4, Col6, Row } from "./styles"
+import { useEffect, useState } from "react"
+import axios from "axios"
+
+interface IDataContato {
+  "id": number,
+  "nome": string,
+  "telefone": string,
+  "email": string,
+  "cidade": string,
+  "mensagem": string,
+}
+
+export const ShowContato = () => {
+
+  const { id } = useParams()
+  const [contato, setContato] = useState<IDataContato>()
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/contatos?id=' + id)
+    .then((dados) => {
+      setContato(dados.data[0])
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }, [id])
 
 
-export const Contato = () => {
-
-  return (
+  return(
     <>
       <Menu />
-      <FormContainer>
-        <h1>Contato</h1>
-        <p>Site feito em aula</p>
+      <div style={{paddingLeft: '6%', paddingRight: '6%', marginTop: 20, marginBottom: 40}}>
+        {
+          contato ?
+          <>
+            <h1>Contato</h1>
+            <Row>
+              <Col4>
+                <br />
+                <h3 style={{padding: 10}}>{contato.nome}</h3>
+                <p style={{padding: 10}}>{contato.cidade}</p>
+                <p style={{padding: 10}}>{contato.email}</p>
+                <p style={{padding: 10}}>{contato.telefone}</p>
+              </Col4>
+              <Col6>
+                <h4>Mensagem:</h4>
+                <p style={{ marginTop: 10}}> {contato.mensagem}</p>
+              </Col6>
+            </Row>
+            <br />
+            <Link to={"/contatos"} style={{ padding: 10, backgroundColor: "blue", color: "white", textDecoration: "none", borderRadius: "10px" }}>Voltar</Link>
+          </>
+          :
+          <h2>Nenhum Contato encontrado</h2>
+        }
 
-        <form action="submit">
-          <label htmlFor="nome">Nome:</label> <br />
-          <input type="text" name="nome" id="nome" required placeholder="Nome" /> <br />
 
-          <label htmlFor="telefone">Telefone:</label> <br />
-          <input type="number" name="telefone" id="telefone" required placeholder="44999999999" pattern="^\(\d{2}\)\d{4,5}-\d{4}$" maxLength={11} /> <br />
-
-          <label htmlFor="email">Email</label> <br />
-          <input type="email" name="email" id="email" required placeholder="email@gmail.com" /> <br />
-
-          <label htmlFor="cidade">Cidade</label> <br />
-          <select name="cidade" id="cidade" required >
-            <option value="">Selecione uma cidade</option>
-            <option value="umuarama">Umuarama</option>
-            <option value="maringa">Maringá</option>
-            <option value="douradina">Douradina</option>
-          </select> <br />
-
-          <label htmlFor="mensagem">Mensagem:</label> <br />
-          <textarea name="mensagem" id="mensagem" required placeholder="Digite aqui sua mensagem"></textarea> <br />
-
-          <button type="submit">Enviar</button>
-        </form>
-      </FormContainer>
+      </div>
     </>
-
   )
 }

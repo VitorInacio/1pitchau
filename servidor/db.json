@@ -1,15 +1,14 @@
 {
   "categorias": [
     {
-      "id": 1,
+      "id": "1",
       "categoria": "Pendrive"
     },
     {
-      "id": 2,
+      "id": "2",
       "categoria": "Mouse"
     }
   ],
-
   "produtos": [
     {
       "id": "1",
@@ -131,7 +130,47 @@
       "imagemg": "pendrives/pendrive3g.jpg",
       "imagemp": "pendrives/pendrive3p.jpg"
     }
+  ],
+  "contatos": [
+    {
+      "id": "1",
+      "nome": "Carlos Santos",
+      "telefone": "4498988918989",
+      "email": "cavalo@gmail.com",
+      "cidade": "Umuarama",
+      "mensagem": "Olá"
+    },
+    {
+      "id": "2",
+      "nome": "Silvio Santos",
+      "telefone": "4498988918989",
+      "email": "cavalo@gmail.com",
+      "cidade": "Umuarama",
+      "mensagem": "Olá"
+    },
+    {
+      "id": "3",
+      "nome": "GIOVANA SANTOS",
+      "telefone": "4491226530",
+      "email": "vitorinacio16@gmail.com",
+      "cidade": "umuarama",
+      "mensagem": "dasdas"
+    },
+    {
+      "id": "4",
+      "nome": "Valdirnei Pereira",
+      "telefone": "99999999999",
+      "email": "valval@gmail.com",
+      "cidade": "maringa",
+      "mensagem": "dsaaaa"
+    },
+    {
+      "id": 4,
+      "nome": "Claudio Pereira",
+      "telefone": "22222222222",
+      "email": "claudiao@gmail.com",
+      "cidade": "douradina",
+      "mensagem": "Palavras não bastam"
+    }
   ]
-
-
 }

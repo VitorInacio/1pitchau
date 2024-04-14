@@ -80,6 +80,7 @@ export const Menu = () => {
                   )
                 })
               }
+              <NavbarLinkExtended to={'/contato'}>Contato</NavbarLinkExtended>
             </NavbarExtendedContainer>
 
           )
